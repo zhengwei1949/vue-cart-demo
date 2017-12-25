@@ -3,7 +3,8 @@ var vm = new Vue({
     el:'#app',
     data:{
         totalMoney:0,
-        productList:[]
+        productList:[],
+        checkAll:false
     },
     filters:{
         formatMoney:function(v){
@@ -33,10 +34,29 @@ var vm = new Vue({
         },
         selectProduct:function(item){
             if(!item.checked){
+                console.log(1);
                 Vue.set(item, 'checked', true);
             }else{
-                Vue.set(item, 'checked', false);
+                console.log(item.checked)
+                item.checked = !item.checked;
             }
+            if(this.productList.filter(function(item){return item.checked}).length < this.productList.length){
+                this.checkAll = false;
+            }else{
+                this.checkAll = true;
+            }
+        },
+        checkAllFn:function(flag){
+            this.checkAll = !this.checkAll;
+            var that = this;
+            this.productList = this.productList.map(function(item){
+                if(!item.checked){
+                    Vue.set(item,'checked',true);
+                }else{
+                    item.checked = that.checkAll;
+                }
+                return item;
+            })
         }
     }
 })

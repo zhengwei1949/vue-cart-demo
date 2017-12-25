@@ -1,5 +1,9 @@
 ## vue的思维模式
 ## 学到了什么
-- 购物车的CURD
-- Vue.$set
-- Vue.$nextTick
+- 凡是看到列表 -->v-for
+- 凡是看到货币、金额 --> 过滤器
+- 凡是看到表单之类的 --> v-model 
+- 凡是看到样式的变化 --> v-bind:class 
+- 如果要使用没有来自后台的数据 --> 使用Vue.$set来设置
+- mounted里面有可能数据不能同步 --> 使用Vue.$nextTick
+ 

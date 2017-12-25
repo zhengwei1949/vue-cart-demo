@@ -2,7 +2,6 @@
 var vm = new Vue({
     el:'#app',
     data:{
-        totalMoney:0,
         productList:[],
         checkAll:false
     },
@@ -21,7 +20,6 @@ var vm = new Vue({
             var that = this;
             this.$http.get('data/cart.json').then(function(res){
                 // console.log(res);
-                that.totalMoney = res.data.result.totalMoney;
                 that.productList = res.data.result.list;
             })
         },
@@ -29,6 +27,7 @@ var vm = new Vue({
             if(status === 1){
                 item.count++;
             }else{
+                if(item.count === 0)return;
                 item.count--;
             }
         },
@@ -57,6 +56,15 @@ var vm = new Vue({
                 }
                 return item;
             })
+        }
+    },
+    computed:{
+        totalMoney:function(){
+            var sum = 0;
+            for(var i=0;i<this.productList.length;i++){
+                sum += this.productList[i].count * this.productList[i].price;
+            }
+            return sum;
         }
     }
 })

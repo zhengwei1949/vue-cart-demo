@@ -5,5 +5,5 @@
 2. 使用`cnpm install`安装对应的依赖
 3. 开始写代码
 ## 参考答案
-- 请切换到answer分支即可
-`git checkout answer`
+- 请切换到gh-pages分支即可
+`git checkout gh-pages`

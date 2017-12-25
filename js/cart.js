@@ -19,8 +19,10 @@ var vm = new Vue({
         cartView:function(){
             var that = this;
             this.$http.get('data/cart.json').then(function(res){
-                // console.log(res);
-                that.productList = res.data.result.list;
+                console.log(res)
+                if(res.status === 200 && res.data.status == '0'){
+                    that.productList = res.data.result.list;
+                }
             })
         },
         changeMoney:function(item,status){
@@ -56,6 +58,10 @@ var vm = new Vue({
                 }
                 return item;
             })
+        },
+        delItem:function(index){
+            // console.log(index)
+            this.productList.splice(index,1);
         }
     },
     computed:{
